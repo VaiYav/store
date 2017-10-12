@@ -1,0 +1,62 @@
+{
+  "products": [
+    {
+        "sku": "SuperSKU1",
+        "title": "Some Title",
+        "attributes": [
+          {"title": "smallAttrTitle", "value": "someText"}
+        ],
+        "description": "Lorem ipsum dolor set ips",
+        "simple": "sku1",
+        "simples": {
+          "parent": "SuperSKU1",
+          "title": "productTitle",
+          "price": "111",
+          "images": {
+            "title": "qwerty",
+            "alt": "qqq",
+            "src": "path/.jpg"
+          }
+        }
+
+    },
+    {
+        "sku": "SuperSKU2",
+        "title": "Some Title2",
+        "attributes": [
+          {"title": "smallAttrTitle2", "value": "someText2"}
+        ],
+        "description": "Lorem ipsum dolor set ips",
+        "simple": "sku2",
+        "simples": {
+          "parent": "SuperSKU2",
+          "title": "productTitle2",
+          "price": "222",
+          "images": {
+            "title": "qwertsssy",
+            "alt": "wwww",
+            "src": "path/.jpg"
+          }
+        }
+    },
+    {
+        "sku": "SuperSKU3",
+        "title": "Some Title3",
+        "attributes": [
+          {"title": "smallAttrTitle3", "value": "someText3"}
+        ],
+        "description": "Lorem ipsum dolor set ips",
+        "simple": "sku2",
+        "simples": {
+          "parent": "SuperSKU3",
+          "title": "productTitle3",
+          "price": "333",
+          "images": {
+            "title": "asaaaa",
+            "alt": "qweqw",
+            "src": "path/.jpg"
+          }
+      }
+    }
+  ]
+}
