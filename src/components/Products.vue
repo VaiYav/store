@@ -1,9 +1,15 @@
 <template>
 
   <div>
-    <product v-for="(product, index) in products" :key="index" :num="index"></product>
+    <section class="doubleColumn container">
+      <h1 class="xs-12 col-md-3">from the blog</h1>
+      <div class="items blogItems col-xs-12 col-md-9">
+        <div class="row">
+      <product v-for="(product, index) in products" :num="index" :key="index"></product>
+      </div>
+      </div>
+    </section>
   </div>
-
 </template>
 
 <script>
@@ -20,13 +26,9 @@
       product
     },
     computed: {
-      ...mapGetters([
-        'getProducts'
-      ]),
-      products () { return this.$store.getters.getProducts }
-    },
-    props: {
-      num: { type: Number, require: true }
+      ...mapGetters({
+        products: 'getProducts'
+      })
     }
   }
 </script>

@@ -29,8 +29,11 @@
   }
 </script>
 
-<style>
-body {
+<style lang="scss">
+  @import 'assets/css/bootstrap';
+  @import 'assets/css/blog';
+
+  body {
   margin: 0;
 }
 
@@ -64,4 +67,7 @@ header span {
   box-sizing: border-box;
   padding-top: 16px;
 }
+  .blogItems article .image a::before{
+    background: url('assets/link.png') center no-repeat;
+  }
 </style>
