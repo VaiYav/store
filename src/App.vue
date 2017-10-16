@@ -1,21 +1,24 @@
 <template>
   <div id="app">
     <header>
+      <cart></cart>
     </header>
     <main>
-      <products></products>
+      <router-view></router-view>
     </main>
   </div>
 </template>
 
 <script>
-  import Products from '@/components/Products.vue'
+  import Products from '@/components/Products'
+  import Cart from '@/components/View/Cart'
   import Api from '@/api/shop'
-
+  import Vue from 'vue'
   export default {
     name: 'app',
     components: {
-      Products
+      Products,
+      Cart
     },
     created () {
       Api.getProducts()
@@ -25,6 +28,20 @@
         .catch(errors => {
           alert(errors)
         })
+    },
+    methods: {
+    },
+    computed: {
+    },
+    mounted () {
+      let ls = Vue.localStorage.get('Cart')
+      if (ls !== null) {
+        let arr = JSON.parse(ls)
+        let length = arr.length
+        for (let i = 0; i < length; i++) {
+          this.$store.dispatch('add_to_cart', arr[i])
+        }
+      }
     }
   }
 </script>

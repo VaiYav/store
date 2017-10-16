@@ -12,18 +12,24 @@
     </div>
     <strong>{{ product(num).simples.price }} грн</strong>
     <div>
-      <a href="#">Задать вопрос</a>
-      <a href="#">Купить</a>
+      <input style="text-align: center" min="1" type="number" v-model.number="value">
+    </div>
+    <div>
+      <a @click="openQuestion(num)" href="#">Задать вопрос</a>
+      <a @click.prevent="sendToCart(num)" href="#">Купить</a>
     </div>
   </article>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
+  import { PUSH } from 'vuex-modal'
+
   export default {
     name: 'Product',
     data () {
       return {
+        value: 1
       }
     },
     props: {
@@ -33,6 +39,22 @@
       ...mapGetters({
         product: 'getProduct'
       })
+    },
+    methods: {
+      sendToCart (num) {
+        let product = {
+          title: this.product(num).simples.title,
+          count: this.value,
+          sku: this.product(num).simples.sku,
+          price: this.product(num).simples.price,
+          image: this.product(num).simples.images
+        }
+        this.$store.dispatch('add_to_cart', product)
+        this.$store.dispatch(PUSH, {name: 'cart', id: num})
+      },
+      openQuestion (num) {
+        this.$store.dispatch(PUSH, {name: 'question', id: num})
+      }
     }
   }
 
