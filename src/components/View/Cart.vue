@@ -11,7 +11,7 @@
           {{item.price}} грн
         </div>
         Итого: {{cartSum}} грн.
-        <a href="#">Заказать</a>
+        <a href="/order">Заказать</a>
       </div>
   </div>
 </template>

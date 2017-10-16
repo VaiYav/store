@@ -1,17 +1,17 @@
 <template>
   <div>
-    <form>
+    <form @submit.prevent="sendForm(form, itemsCart)">
       <label>
         Name
-        <input type="text">
+        <input v-model="form.name" type="text">
       </label>
       <label>
         email
-        <input type="email">
+        <input v-model="form.email" type="email">
       </label>
 
       <label>
-        <select>
+        <select v-model="form.payment">
           Тип оплаты
           <option value="cash">Наличными</option>
           <option value="nonCash">Безналичный</option>
@@ -19,7 +19,7 @@
       </label>
       <label>
         Тип доставки
-        <select>
+        <select v-model="form.delivery">
           <option value="personally">Самовывоз</option>
           <option value="address">Адрессная доставка</option>
           <option value="post">Доставка на почту</option>
@@ -27,11 +27,11 @@
       </label>
       <label>
         Дополнительные пожелания
-        <textarea></textarea>
+        <textarea v-model="form.text"></textarea>
       </label>
       <label>
         Перезвонить для подтверждения?
-        <input type="checkbox">
+        <input v-model="form.confirm" type="checkbox">
       </label>
       <button>Send</button>
     </form>
@@ -39,13 +39,40 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+  import Api from '@/api/shop'
+
   export default {
     name: 'Order',
     data () {
       return {
+        form: {
+          name: '',
+          email: '',
+          payment: '',
+          confirm: false,
+          delivery: '',
+          text: ''
+        }
       }
     },
     computed: {
+      ...mapGetters({
+        itemsCart: 'getItemsCart'
+      })
+    },
+    methods: {
+      sendForm (form, itemsCart) {
+        let order = Object.assign(form, { items: itemsCart })
+        Api.createOrder(order)
+          .then(response => {
+            this.$store.dispatch('cart_clear')
+            this.$router.push({path: 'typage'})
+          })
+          .catch(errors => {
+            alert('Error')
+          })
+      }
     }
   }
 </script>

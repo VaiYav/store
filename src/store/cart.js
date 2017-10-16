@@ -28,6 +28,9 @@ const actions = {
     console.log(index)
     let item = this.state.cart.cart.splice(index, 1)
     commit('DELETE_ITEM_FROM_CART', item)
+  },
+  cart_clear: function ({commit}) {
+    commit('CART_CLEAR')
   }
 }
 
@@ -42,6 +45,10 @@ const mutations = {
   },
   DELETE_ITEM_FROM_CART: function (state, items) {
     Vue.localStorage.set('Cart', JSON.stringify(this.state.cart.cart))
+  },
+  CART_CLEAR: function (state) {
+    state.cart = []
+    Vue.localStorage.remove('Cart')
   }
 }
 
