@@ -6,34 +6,29 @@
     <main>
       <router-view></router-view>
     </main>
+    <modal-cart></modal-cart>
+    <modal-question></modal-question>
   </div>
 </template>
 
 <script>
-  import Products from '@/components/Products'
   import Cart from '@/components/View/Cart'
-  import Api from '@/api/shop'
+  import ModalQuestion from '@/components/View/modalQuestion'
+  import ModalCart from '@/components/View/modalCart'
+
   export default {
     name: 'app',
     components: {
-      Products,
-      Cart
-    },
-    created () {
-      Api.getProducts()
-        .then(products => {
-          this.$store.dispatch('addProducts', products.data)
-        })
-        .catch(errors => {
-          alert(errors)
-        })
+      Cart,
+      ModalCart,
+      ModalQuestion
     },
     methods: {
     },
     computed: {
     },
     mounted () {
-      this.$store.dispatch('importFromLS')
+      this.$store.dispatch('init')
     }
   }
 </script>

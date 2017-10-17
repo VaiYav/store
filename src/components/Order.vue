@@ -18,7 +18,7 @@
       </label>
       <label>
         Тип доставки
-        <select v-model="form.delivery">
+        <select v-model="form.delivery"> //tyt for in
           <option value="personally">Самовывоз</option>
           <option value="address">Адрессная доставка</option>
           <option value="post">Доставка на почту</option>
@@ -44,7 +44,6 @@
 <script>
   import { mapGetters } from 'vuex'
   import ApiShop from '@/api/shop'
-  import Vue from 'vue'
   export default {
     name: 'Order',
     data () {
@@ -77,28 +76,6 @@
           .catch(errors => {
             alert('Error')
           })
-      }
-    },
-    mounted () {
-      let user = Vue.localStorage.get('User')
-      let customer = Vue.localStorage.get('Customer')
-      if (user) {
-        let objUser = JSON.parse(user)
-        this.form = {
-          name: objUser.name,
-          email: objUser.email,
-          payment: objUser.payment,
-          delivery: objUser.delivery,
-          address: objUser.address
-        }
-      }
-      if (customer) {
-        let objCustomer = JSON.parse(customer)
-        this.form = {
-          payment: objCustomer.payment,
-          address: objCustomer.address,
-          delivery: objCustomer.delivery
-        }
       }
     }
   }

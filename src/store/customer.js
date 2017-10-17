@@ -1,7 +1,8 @@
 import Vue from 'vue'
 const state = {
   customer: {},
-  order: {}
+  order: {},
+  user: {}
 }
 
 const getters = {
@@ -9,14 +10,15 @@ const getters = {
   getOrder: state => state.order
 }
 const actions = {
-  changeCustomer: function ({commit}, value) {
-    Vue.localStorage.set('Customer', JSON.stringify(value))
-    commit('CHANGE_CUSTOMER', value)
+  changeCustomer: function ({commit}, {type, customer}) {
+    Vue.localStorage.set('Customer', JSON.stringify(customer))
+    console.log(customer)
+    commit('CHANGE_CUSTOMER', {type, customer})
   },
-  orderCreated: function ({commit}, value) {
-    if (value) {
-      Vue.localStorage.set('Order', JSON.stringify(value))
-      commit('ORDER_CREATED', value)
+  orderCreated: function ({commit}, order) {
+    if (order) {
+      Vue.localStorage.set('Order', JSON.stringify(order))
+      commit('ORDER_CREATED', order)
     } else {
       let order = Vue.localStorage.get('Order')
       let obj = JSON.parse(order)
@@ -26,11 +28,11 @@ const actions = {
 }
 
 const mutations = {
-  CHANGE_CUSTOMER: function (state, value) {
-    state.customer = value
+  CHANGE_CUSTOMER: function (state, {type, customer}) {
+    state[type] = customer
   },
-  ORDER_CREATED: function (state, value) {
-    state.order = value
+  ORDER_CREATED: function (state, order) {
+    state.order = order
   }
 }
 

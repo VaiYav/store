@@ -30,21 +30,6 @@ const actions = {
   },
   cartClear: function ({commit}) {
     commit('CART_CLEAR')
-  },
-  importFromLS: function ({commit}) {
-    let lsCart = Vue.localStorage.get('Cart')
-    let lsCustomer = Vue.localStorage.get('Customer')
-    if (lsCart !== null) {
-      let arr = JSON.parse(lsCart)
-      let length = arr.length
-      for (let i = 0; i < length; i++) {
-        commit('ADD_TO_CART', arr[i])
-      }
-    }
-    if (lsCustomer) {
-      let obj = JSON.parse(lsCustomer)
-      this.dispatch('changeCustomer', obj)
-    }
   }
 }
 
