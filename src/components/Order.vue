@@ -9,7 +9,6 @@
         email
         <input v-model="form.email" type="email">
       </label>
-
       <label>
         <select v-model="form.payment">
           Тип оплаты
@@ -41,7 +40,7 @@
 <script>
   import { mapGetters } from 'vuex'
   import Api from '@/api/shop'
-
+  import Vue from 'vue'
   export default {
     name: 'Order',
     data () {
@@ -72,6 +71,18 @@
           .catch(errors => {
             alert('Error')
           })
+      }
+    },
+    mounted () {
+      let user = Vue.localStorage.get('User')
+      if (user) {
+        let obj = JSON.parse(user)
+        this.form = {
+          name: obj.name,
+          email: obj.email,
+          payment: obj.payment,
+          delivery: obj.delivery
+        }
       }
     }
   }

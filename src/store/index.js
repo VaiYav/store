@@ -7,13 +7,13 @@ Vue.use(Vuex)
 
 const state = {
   products: [],
-  status: {}
+  statusSend: {}
 }
 
 const getters = {
   getProduct: state => num => state.products[num],
   getProducts: state => state.products,
-  getStatusSend: state => state.status
+  getStatusSend: state => state.statusSend
 }
 const actions = {
   addProducts: function ({commit}, value) {
@@ -28,7 +28,7 @@ const mutations = {
     state.products.push(...value)
   },
   SEND_STATUS: function (state, {status}) {
-    state.status = {status}
+    state.statusSend = {status}
   }
 }
 

@@ -38,7 +38,7 @@
         <div v-for="(item, index) in itemsCart">
           <img :src="item.image.src" alt="">
           {{item.title}}
-          Кол-во {{item.count}} шт.
+          Кол-во {{item.count}}шт.
           {{item.price}} грн
           <a href="#" @click.prevent="deleteItem(index)">Удалить</a>
         </div>

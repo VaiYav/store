@@ -25,7 +25,6 @@ const actions = {
   },
   delete_item_from_cart: function ({commit}, value) {
     let index = this.state.cart.cart.indexOf(value)
-    console.log(index)
     let item = this.state.cart.cart.splice(index, 1)
     commit('DELETE_ITEM_FROM_CART', item)
   },
