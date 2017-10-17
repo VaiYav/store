@@ -25,6 +25,10 @@
         </select>
       </label>
       <label>
+        Адресс доставки
+        <input type="text" v-model="form.address">
+      </label>
+      <label>
         Дополнительные пожелания
         <textarea v-model="form.text"></textarea>
       </label>
@@ -39,7 +43,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import Api from '@/api/shop'
+  import ApiShop from '@/api/shop'
   import Vue from 'vue'
   export default {
     name: 'Order',
@@ -50,6 +54,7 @@
           email: '',
           payment: '',
           confirm: false,
+          address: '',
           delivery: '',
           text: ''
         }
@@ -63,9 +68,10 @@
     methods: {
       sendForm (form, itemsCart) {
         let order = Object.assign(form, { items: itemsCart })
-        Api.createOrder(order)
+        ApiShop.createOrder(order)
           .then(response => {
-            this.$store.dispatch('cart_clear')
+            this.$store.dispatch('orderCreated', response.data)
+            this.$store.dispatch('cartClear')
             this.$router.push({path: 'typage'})
           })
           .catch(errors => {
@@ -75,13 +81,23 @@
     },
     mounted () {
       let user = Vue.localStorage.get('User')
+      let customer = Vue.localStorage.get('Customer')
       if (user) {
-        let obj = JSON.parse(user)
+        let objUser = JSON.parse(user)
         this.form = {
-          name: obj.name,
-          email: obj.email,
-          payment: obj.payment,
-          delivery: obj.delivery
+          name: objUser.name,
+          email: objUser.email,
+          payment: objUser.payment,
+          delivery: objUser.delivery,
+          address: objUser.address
+        }
+      }
+      if (customer) {
+        let objCustomer = JSON.parse(customer)
+        this.form = {
+          payment: objCustomer.payment,
+          address: objCustomer.address,
+          delivery: objCustomer.delivery
         }
       }
     }

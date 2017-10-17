@@ -13,7 +13,6 @@
   import Products from '@/components/Products'
   import Cart from '@/components/View/Cart'
   import Api from '@/api/shop'
-  import Vue from 'vue'
   export default {
     name: 'app',
     components: {
@@ -34,14 +33,7 @@
     computed: {
     },
     mounted () {
-      let ls = Vue.localStorage.get('Cart')
-      if (ls !== null) {
-        let arr = JSON.parse(ls)
-        let length = arr.length
-        for (let i = 0; i < length; i++) {
-          this.$store.dispatch('add_to_cart', arr[i])
-        }
-      }
+      this.$store.dispatch('importFromLS')
     }
   }
 </script>

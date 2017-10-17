@@ -49,7 +49,7 @@
           price: this.product(num).simples.price,
           image: this.product(num).simples.images
         }
-        this.$store.dispatch('add_to_cart', product)
+        this.$store.dispatch('addToCart', product)
         this.$store.dispatch(PUSH, {name: 'cart', id: num})
       },
       openQuestion (num) {

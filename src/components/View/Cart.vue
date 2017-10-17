@@ -35,7 +35,7 @@
         } else {
           value = false
         }
-        this.$store.dispatch('switch_status', value)
+        this.$store.dispatch('switchStatus', value)
       }
     },
     computed: {

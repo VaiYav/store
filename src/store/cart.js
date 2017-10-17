@@ -11,7 +11,7 @@ const getters = {
 }
 
 const actions = {
-  add_to_cart: function ({commit}, product) {
+  addToCart: function ({commit}, product) {
     let p = this.state.cart.cart.find(item => item.sku === product.sku)
     if (p) {
       commit('ADD_TO_CART', p.count = p.count + product.count)
@@ -20,16 +20,31 @@ const actions = {
     }
     Vue.localStorage.set('Cart', JSON.stringify(state.cart))
   },
-  switch_status: function ({commit}, value) {
+  switchStatus: function ({commit}, value) {
     commit('SWITCH_STATUS', value)
   },
-  delete_item_from_cart: function ({commit}, value) {
+  deleteItemFromCart: function ({commit}, value) {
     let index = this.state.cart.cart.indexOf(value)
     let item = this.state.cart.cart.splice(index, 1)
     commit('DELETE_ITEM_FROM_CART', item)
   },
-  cart_clear: function ({commit}) {
+  cartClear: function ({commit}) {
     commit('CART_CLEAR')
+  },
+  importFromLS: function ({commit}) {
+    let lsCart = Vue.localStorage.get('Cart')
+    let lsCustomer = Vue.localStorage.get('Customer')
+    if (lsCart !== null) {
+      let arr = JSON.parse(lsCart)
+      let length = arr.length
+      for (let i = 0; i < length; i++) {
+        commit('ADD_TO_CART', arr[i])
+      }
+    }
+    if (lsCustomer) {
+      let obj = JSON.parse(lsCustomer)
+      this.dispatch('changeCustomer', obj)
+    }
   }
 }
 

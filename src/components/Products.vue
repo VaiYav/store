@@ -48,6 +48,22 @@
       </div>
     </modal>
     <message></message>
+    <form @submit.prevent="sendCustomer">
+      Тип доставки
+      <select v-model="customer.delivery">
+        <option value="personally">Самовывоз</option>
+        <option value="address">Адрессная доставка</option>
+        <option value="post">Доставка на почту</option>
+      </select>
+      Адрес доставки
+      <input type="text" v-model="customer.address">
+      Способ оплаты
+      <select v-model="customer.payment">
+        <option value="cash">Наличными</option>
+        <option value="nonCash">Безналичный</option>
+      </select>
+      <button type="submit">Применить</button>
+    </form>
   </div>
 </template>
 
@@ -58,6 +74,7 @@
   import { Modal, POP } from 'vuex-modal'
   import Api from '@/api/shop'
   import message from '@/components/View/message'
+  import Vue from 'vue'
   export default {
     name: 'Products',
     data () {
@@ -67,6 +84,11 @@
           email: '',
           checkbox: false,
           text: ''
+        },
+        customer: {
+          delivery: '',
+          address: '',
+          payment: ''
         }
       }
     },
@@ -80,7 +102,8 @@
       ...mapGetters({
         itemsCart: 'getItemsCart',
         products: 'getProducts',
-        modal: 'currentModal'
+        modal: 'currentModal',
+        customers: 'getCustomer'
       })
     },
     methods: {
@@ -90,11 +113,11 @@
       sendForm (value) {
         Api.sendForm(value)
           .then(response => {
-            this.$store.dispatch('send_status', {status: true})
+            this.$store.dispatch('sendStatus', {status: true})
             this.resetForm()
           })
           .catch(errors => {
-            this.$store.dispatch('send_status', {status: false})
+            this.$store.dispatch('sendStatus', {status: false})
           })
       },
       resetForm () {
@@ -118,7 +141,21 @@
         return sum
       },
       deleteItem (index) {
-        this.$store.dispatch('delete_item_from_cart', this.itemsCart[index], index)
+        this.$store.dispatch('deleteItemFromCart', this.itemsCart[index], index)
+      },
+      sendCustomer () {
+        this.$store.dispatch('changeCustomer', this.customer)
+      }
+    },
+    mounted () {
+      let customer = Vue.localStorage.get('Customer')
+      if (customer) {
+        let objCustomer = JSON.parse(customer)
+        this.customer = {
+          payment: objCustomer.payment,
+          address: objCustomer.address,
+          delivery: objCustomer.delivery
+        }
       }
     }
   }
