@@ -1,12 +1,11 @@
 <template>
   <div>
-    <div>Спасибо за заказ, {{order.order.name}}!</div>
-    <div>Номер вашего заказа: {{order.id}}</div>
-    <div v-if="order.order.email">Мы свяжемся с вами по почте {{order.order.email}}</div>
-    <div>Тип оплаты: {{order.order.payment}}</div>
-    <div v-if="order.order.payment === 'nonCash'">Статус оплаты:</div>
-    <div>Доставка: {{order.order.delivery}}</div>
-    <div>Адресс доставки: {{order.order.address}}</div>
+    <div>{{ $t('message.thanks')}}, {{order.order.name}}!</div>
+    <div>{{ $t('message.numberOrder')}}: {{order.id}}</div>
+    <div v-if="order.order.email">{{ $t('message.contact')}} {{order.order.email}}</div>
+    <div>{{ $t('form.payment')}}: {{order.order.payment}}</div>
+    <div>{{ $t('form.delivery')}}: {{order.order.delivery}}</div>
+    <div>{{ $t('form.address')}}: {{order.order.address}}</div>
   </div>
 </template>
 

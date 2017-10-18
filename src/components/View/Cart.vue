@@ -1,17 +1,17 @@
 <template>
   <div>
       <strong @click.prevent="openMiniCart">
-        Cart - {{cartCount}} шт.
+        {{ $t('form.cart')}} - {{cartCount}} {{ $t('buttons.count')}}
       </strong>
       <div class="cart" v-show="statusMiniCart">
         <div v-for="(item, index) in itemsCart">
           <img :src="item.image.src" alt="">
           {{item.title}}
-          Кол-во {{item.count}} шт.
-          {{item.price}} грн
+          {{ $t('form.count')}}: {{item.count}} {{ $t('buttons.count')}}
+          {{item.price}} {{ $t('buttons.price')}}
         </div>
-        Итого: {{cartSum}} грн.
-        <a href="/order">Заказать</a>
+        {{ $t('form.summ')}}: {{cartSum}} {{ $t('buttons.price')}}
+        <a href="/order"> {{ $t('buttons.order')}}</a>
       </div>
   </div>
 </template>

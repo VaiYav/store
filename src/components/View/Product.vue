@@ -10,13 +10,13 @@
     <div class="column" v-for="(attr, index) in product(num).attributes">
       <span>{{ attr.title }} - {{ attr.value }}</span>
     </div>
-    <strong>{{ product(num).simples.price }} грн</strong>
+    <strong>{{ product(num).simples.price }} {{ $t('buttons.price')}}</strong>
     <div>
       <input style="text-align: center" min="1" type="number" v-model.number="value">
     </div>
     <div>
-      <a @click="openQuestion(num)" href="#">Задать вопрос</a>
-      <a @click.prevent="sendToCart(num)" href="#">Купить</a>
+      <a @click="openQuestion(num)" href="#">{{ $t('buttons.question')}}</a>
+      <a @click.prevent="sendToCart(num)" href="#">{{ $t('buttons.buy')}}</a>
     </div>
   </article>
 </template>

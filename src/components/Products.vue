@@ -1,7 +1,6 @@
 <template>
   <div>
     <section class="doubleColumn container">
-      <h1 class="xs-12 col-md-3">from the blog</h1>
       <div class="items blogItems col-xs-12 col-md-9">
         <div class="row">
       <product v-for="(product, index) in products" :num="index" :key="index"></product>
@@ -10,20 +9,17 @@
     </section>
     <message></message>
     <form @submit.prevent="sendCustomer">
-      Тип доставки
-      <select v-model="customer.delivery"> //tyt for in
-        <option value="personally">Самовывоз</option>
-        <option value="address">Адрессная доставка</option>
-        <option value="post">Доставка на почту</option>
+      {{ $t('form.delivery')}}
+      <select v-model="customer.delivery">
+        <option v-for="(item, index) in methods.delivery" :key="index">{{item.title}}</option>
       </select>
-      Адрес доставки
+      {{ $t('form.address')}}
       <input type="text" v-model="customer.address">
-      Способ оплаты
+      {{ $t('form.payment')}}
       <select v-model="customer.payment">
-        <option value="cash">Наличными</option>
-        <option value="nonCash">Безналичный</option>
+        <option v-for="(item, index) in methods.payment" :key="index">{{item.title}}</option>
       </select>
-      <button type="submit">Применить</button>
+      <button type="submit">{{ $t('buttons.apply')}}</button>
     </form>
   </div>
 </template>
@@ -56,12 +52,13 @@
         itemsCart: 'getItemsCart',
         products: 'getProducts',
         modal: 'currentModal',
-        customers: 'getCustomer'
+        customers: 'getCustomer',
+        methods: 'getMethods'
       })
     },
     methods: {
       sendCustomer () {
-        this.$store.dispatch('changeCustomer', {type: 'customer', customer: this.customer})
+        this.$store.dispatch('changeCustomer', {type: 'customer', value: this.customer})
       }
     },
     created () {
@@ -72,6 +69,11 @@
         .catch(errors => {
           alert(errors)
         })
+      this.customer = {
+        delivery: this.customers.delivery,
+        address: this.customers.address,
+        payment: this.customers.payment
+      }
     }
   }
 </script>

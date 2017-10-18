@@ -2,42 +2,48 @@
   <div>
     <form @submit.prevent="sendForm(form, itemsCart)">
       <label>
-        Name
+        {{ $t('form.name')}}
         <input v-model="form.name" type="text">
       </label>
       <label>
-        email
+        {{ $t('form.email')}}
         <input v-model="form.email" type="email">
       </label>
       <label>
+        {{ $t('form.payment')}}
         <select v-model="form.payment">
-          Тип оплаты
-          <option value="cash">Наличными</option>
-          <option value="nonCash">Безналичный</option>
+          <option v-for="(item, index) in methods.payment" :key="index">{{item.title}}</option>
         </select>
       </label>
       <label>
-        Тип доставки
+        {{ $t('form.delivery')}}
         <select v-model="form.delivery"> //tyt for in
-          <option value="personally">Самовывоз</option>
-          <option value="address">Адрессная доставка</option>
-          <option value="post">Доставка на почту</option>
+          <option v-for="(item, index) in methods.delivery" :key="index">{{item.title}}</option>
         </select>
       </label>
       <label>
-        Адресс доставки
+        {{ $t('form.address')}}
         <input type="text" v-model="form.address">
       </label>
       <label>
-        Дополнительные пожелания
+        {{ $t('form.additionText')}}
         <textarea v-model="form.text"></textarea>
       </label>
       <label>
-        Перезвонить для подтверждения?
+        {{ $t('form.recall')}}
         <input v-model="form.confirm" type="checkbox">
       </label>
-      <button>Send</button>
+      <button>{{ $t('buttons.send')}}</button>
     </form>
+    <div>
+      {{ $t('form.cart')}}
+      <div v-for="(item, index) in itemsCart" :key="index">
+        <img :src="item.image.src" :alt="item.image.alt">
+        {{item.title}}
+        {{item.count}} - {{ $t('form.count')}}
+        {{item.price}} {{ $t('buttons.price')}}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -61,7 +67,10 @@
     },
     computed: {
       ...mapGetters({
-        itemsCart: 'getItemsCart'
+        itemsCart: 'getItemsCart',
+        user: 'getUser',
+        customers: 'getCustomer',
+        methods: 'getMethods'
       })
     },
     methods: {
@@ -76,6 +85,17 @@
           .catch(errors => {
             alert('Error')
           })
+      }
+    },
+    mounted () {
+      this.form = {
+        name: this.user.name,
+        email: this.user.email,
+        payment: this.customers.payment || this.user.payment,
+        address: this.customers.address || this.user.address,
+        delivery: this.customers.delivery || this.user.delivery,
+        text: '',
+        confirm: false
       }
     }
   }

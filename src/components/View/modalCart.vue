@@ -4,13 +4,13 @@
       <div v-for="(item, index) in itemsCart">
         <img :src="item.image.src" alt="">
         {{item.title}}
-        Кол-во {{item.count}}шт.
-        {{item.price}} грн
-        <a href="#" @click.prevent="deleteItem(index)">Удалить</a>
+        {{ $t('form.summ')}} {{item.count}}{{ $t('buttons.count')}}
+        {{item.price}} {{ $t('buttons.price')}}
+        <a href="#" @click.prevent="deleteItem(index)">{{ $t('buttons.delete')}}</a>
       </div>
-      Итого к оплате {{cartSum()}} грн
-      <button class="button" type="button" @click="close">Продолжить покупки</button>
-      <a href="/order" class="button">Оформить заказ</a>
+      {{ $t('form.summ')}} {{cartSum()}} {{ $t('buttons.price')}}
+      <button class="button" type="button" @click="close">{{ $t('buttons.continueShopping')}}</button>
+      <a href="/order" class="button">{{ $t('buttons.order')}}</a>
     </div>
   </modal>
 </template>

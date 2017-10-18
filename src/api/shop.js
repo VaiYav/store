@@ -15,7 +15,7 @@ export default {
       payment: order.payment,
       address: order.address
     }
-    Vue.localStorage.set('User', JSON.stringify(user))
+    Vue.localStorage.set('user', JSON.stringify(user))
     return axios.post('/orders', {order})
   }
 }

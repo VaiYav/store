@@ -1,8 +1,8 @@
 <template>
     <div class="message" >
       <transition name="slide-fade">
-        <div class="mess" v-if="status.status === true">Send Success</div>
-        <div class="mess" v-if="status.status === false">Send Error</div>
+        <div class="mess" v-if="status.status === true">{{ $t('message.success')}}</div>
+        <div class="mess" v-if="status.status === false">{{ $t('message.error')}}</div>
       </transition>
     </div>
 </template>

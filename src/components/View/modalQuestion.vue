@@ -1,26 +1,26 @@
 <template>
   <modal name="question">
     <div class="basic-modal">
-      <h1 v-if="modal" class="title">Вопрос про {{products[modal.id].simples.title}}</h1>
+      <h1 v-if="modal" class="title">{{ $t('message.questionAbout')}} {{products[modal.id].simples.title}}</h1>
       <form @submit.prevent="sendForm(form)">
         <label for="name">
-          Name
+          {{ $t('form.name')}}
           <input v-model="form.name" type="text" id="name">
         </label>
         <label for="email">
-          Email
+          {{ $t('form.email')}}
           <input v-model="form.email" type="text" id="email">
         </label>
         <label for="checkbox">
-          Check
+          {{ $t('form.sure')}}
           <input v-model="form.checkbox" type="checkbox" id="checkbox">
         </label>
         <label for="area">
           <textarea v-model="form.text" name="area" id="area"></textarea>
         </label>
-        <button type="submit">Submit</button>
+        <button type="submit">{{ $t('buttons.send')}}</button>
       </form>
-      <button class="button" type="button" @click="close">Close Modal</button>
+      <button class="button" type="button" @click="close">{{ $t('buttons.close')}}</button>
     </div>
   </modal>
 </template>

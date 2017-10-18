@@ -27,7 +27,7 @@
     },
     computed: {
     },
-    mounted () {
+    created () {
       this.$store.dispatch('init')
     }
   }

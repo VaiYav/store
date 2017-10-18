@@ -14,7 +14,9 @@ Vue.config.productionTip = false
 Vue.axios.defaults.baseURL = 'http://localhost:3000'
 import 'vuex-modal/dist/vuex-modal.css'
 import VueLocalStorage from 'vue-localstorage'
+import VueDefaultValue from 'vue-default-value'
 
+Vue.use(VueDefaultValue)
 Vue.use(VueLocalStorage)
 
 /* eslint-disable no-new */
