@@ -67,7 +67,8 @@
             value: '',
             title: ''
           },
-          text: ''
+          text: '',
+          statusPayment: 'Не оплачено'
         }
       }
     },
