@@ -2664,6 +2664,56 @@
         "items": []
       },
       "id": 87
+    },
+    {
+      "order": {
+        "name": "Qwerty",
+        "email": "",
+        "payment": {
+          "title": "Безналичный",
+          "value": "nonCash"
+        },
+        "confirm": false,
+        "address": "qwe",
+        "delivery": {
+          "title": "Доставка на почту",
+          "value": "post"
+        },
+        "text": "",
+        "items": [
+          {
+            "title": "Сетевой шуруповерт ТехАС ТА-01-104",
+            "count": 1,
+            "sku": "69091002",
+            "price": "372",
+            "image": {
+              "title": "Сетевой шуруповерт ТехАС",
+              "alt": "Сетевой шуруповерт ТехАС",
+              "src": "https://vaiyav.github.io/sites/motive/img/content/pic3.jpg"
+            }
+          }
+        ]
+      },
+      "id": 88
+    },
+    {
+      "order": {
+        "name": "Qwerty",
+        "email": "",
+        "payment": {
+          "title": "Наличными",
+          "value": "cash"
+        },
+        "confirm": false,
+        "address": "rqwe",
+        "delivery": {
+          "title": "Самовывоз",
+          "value": "personally"
+        },
+        "text": "",
+        "items": []
+      },
+      "id": 89
     }
   ]
 }

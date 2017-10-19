@@ -11,13 +11,13 @@
     <form @submit.prevent="sendCustomer">
       {{ $t('form.delivery')}}
       <select v-model="customer.delivery">
-        <option v-for="(item, index) in methods.delivery" :key="index">{{item.title}}</option>
+        <option v-for="(item, index) in methods.delivery" :key="index" :value="{title: item.title, value: item.value}">{{item.title}}</option>
       </select>
       {{ $t('form.address')}}
       <input type="text" v-model="customer.address">
       {{ $t('form.payment')}}
       <select v-model="customer.payment">
-        <option v-for="(item, index) in methods.payment" :key="index">{{item.title}}</option>
+        <option v-for="(item, index) in methods.payment" :value="{title: item.title, value: item.value}" :key="index">{{item.title}}</option>
       </select>
       <button type="submit">{{ $t('buttons.apply')}}</button>
     </form>
@@ -36,9 +36,15 @@
     data () {
       return {
         customer: {
-          delivery: '',
+          delivery: {
+            value: '',
+            title: ''
+          },
           address: '',
-          payment: ''
+          payment: {
+            value: '',
+            title: ''
+          }
         }
       }
     },

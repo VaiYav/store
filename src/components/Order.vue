@@ -12,13 +12,13 @@
       <label>
         {{ $t('form.payment')}}
         <select v-model="form.payment">
-          <option v-for="(item, index) in methods.payment" :key="index">{{item.title}}</option>
+          <option v-for="(item, index) in methods.payment" :value="{title: item.title, value: item.value}" :key="index">{{item.title}}</option>
         </select>
       </label>
       <label>
         {{ $t('form.delivery')}}
         <select v-model="form.delivery">
-          <option v-for="(item, index) in methods.delivery" :key="index">{{item.title}}</option>
+          <option v-for="(item, index) in methods.delivery" :value="{title: item.title, value: item.value}" :key="index">{{item.title}}</option>
         </select>
       </label>
       <label>
@@ -57,10 +57,16 @@
         form: {
           name: '',
           email: '',
-          payment: '',
+          payment: {
+            value: '',
+            title: ''
+          },
           confirm: false,
           address: '',
-          delivery: '',
+          delivery: {
+            value: '',
+            title: ''
+          },
           text: ''
         }
       }
