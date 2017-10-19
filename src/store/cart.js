@@ -30,6 +30,9 @@ const actions = {
   },
   cartClear: function ({commit}) {
     commit('CART_CLEAR')
+  },
+  changeItemCount: function ({commit}, {product, count}) {
+    commit('CHANGE_ITEM_COUNT', {product, count})
   }
 }
 
@@ -48,6 +51,9 @@ const mutations = {
   CART_CLEAR: function (state) {
     state.cart = []
     Vue.localStorage.remove('Cart')
+  },
+  CHANGE_ITEM_COUNT: function (state, {product, count}) {
+    Vue.localStorage.set('Cart', JSON.stringify(state.cart))
   }
 }
 

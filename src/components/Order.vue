@@ -17,7 +17,7 @@
       </label>
       <label>
         {{ $t('form.delivery')}}
-        <select v-model="form.delivery"> //tyt for in
+        <select v-model="form.delivery">
           <option v-for="(item, index) in methods.delivery" :key="index">{{item.title}}</option>
         </select>
       </label>

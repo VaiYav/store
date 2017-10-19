@@ -4,7 +4,10 @@
       <div v-for="(item, index) in itemsCart">
         <img :src="item.image.src" alt="">
         {{item.title}}
-        {{ $t('form.summ')}} {{item.count}}{{ $t('buttons.count')}}
+
+        {{ $t('form.summ')}}
+
+        <strong><a href="#" @click.prevent="productItemMinus(index)">-</a> {{item.count}}{{ $t('buttons.count')}} <a @click.prevent="productItemPlus(index)" href="#">+</a></strong>
         {{item.price}} {{ $t('buttons.price')}}
         <a href="#" @click.prevent="deleteItem(index)">{{ $t('buttons.delete')}}</a>
       </div>
@@ -52,6 +55,20 @@
       },
       close () {
         this.$store.dispatch(POP)
+      },
+      productItemPlus (index) {
+        let count = this.itemsCart[index].count += 1
+        if (count < 1) {
+          count = this.itemsCart[index].count = 1
+        }
+        this.$store.dispatch('changeItemCount', {product: this.itemsCart[index], count: count})
+      },
+      productItemMinus (index) {
+        let count = this.itemsCart[index].count -= 1
+        if (count < 1) {
+          count = this.itemsCart[index].count = 1
+        }
+        this.$store.dispatch('changeItemCount', {product: this.itemsCart[index], count: count})
       }
     }
   }
