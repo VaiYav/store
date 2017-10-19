@@ -30,11 +30,7 @@
     methods: {
       openMiniCart () {
         let value
-        if (this.statusMiniCart === false) {
-          value = true
-        } else {
-          value = false
-        }
+        this.statusMiniCart === false ? value = true : value = false
         this.$store.dispatch('switchStatus', value)
       }
     },
@@ -44,21 +40,21 @@
         statusMiniCart: 'getStatusMiniCart'
       }),
       cartCount () {
-        let arr = this.$store.state.cart.cart
+        let arr = this.itemsCart
         let count = 0
         for (let i = 0; i < arr.length; i++) {
-          count += this.$store.state.cart.cart[i].count
+          count += arr[i].count
         }
         return count
       },
       cartSum () {
-        let arr = this.$store.state.cart.cart
+        let arr = this.itemsCart
         let count = 0
         let price = 0
         let sum = 0
         for (let i = 0; i < arr.length; i++) {
-          count = this.$store.state.cart.cart[i].count
-          price = this.$store.state.cart.cart[i].price
+          count = arr[i].count
+          price = arr[i].price
           sum += count * price
         }
         return sum

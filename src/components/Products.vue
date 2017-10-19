@@ -69,11 +69,7 @@
         .catch(errors => {
           alert(errors)
         })
-      this.customer = {
-        delivery: this.customers.delivery,
-        address: this.customers.address,
-        payment: this.customers.payment
-      }
+      Object.assign(this.customer, this.customers)
     }
   }
 </script>

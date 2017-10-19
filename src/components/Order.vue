@@ -88,15 +88,7 @@
       }
     },
     mounted () {
-      this.form = {
-        name: this.user.name,
-        email: this.user.email,
-        payment: this.customers.payment || this.user.payment,
-        address: this.customers.address || this.user.address,
-        delivery: this.customers.delivery || this.user.delivery,
-        text: '',
-        confirm: false
-      }
+      Object.assign(this.form, this.user, this.customers)
     }
   }
 </script>
