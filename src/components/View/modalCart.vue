@@ -2,12 +2,15 @@
   <modal name="cart">
     <div class="basic-modal">
       <div v-for="(item, index) in itemsCart">
-        <img :src="item.image.src" alt="">
+        {{itemsCart}}
+        <!--<img :src="product(index).simpleProducts[product(index).defaultSku].images.src" alt="">-->
         {{item.title}}
-
         {{ $t('form.summ')}}
-
-        <strong><a href="#" @click.prevent="productItemMinus(index)">-</a> {{item.count}}{{ $t('buttons.count')}} <a @click.prevent="productItemPlus(index)" href="#">+</a></strong>
+        <strong>
+          <a href="#" @click.prevent="productItemMinus(index)">-</a>
+          {{item.count}}{{ $t('buttons.count')}}
+          <a @click.prevent="productItemPlus(index)" href="#">+</a>
+        </strong>
         {{item.price}} {{ $t('buttons.price')}}
         <a href="#" @click.prevent="deleteItem(index)">{{ $t('buttons.delete')}}</a>
       </div>
@@ -31,6 +34,7 @@
     computed: {
       ...mapGetters({
         itemsCart: 'getItemsCart',
+        getProduct: 'getProduct',
         modal: 'currentModal'
       })
     },

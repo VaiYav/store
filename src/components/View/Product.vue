@@ -3,14 +3,17 @@
   <article class="col-xs-12 col-sm-4">
     <div class="image">
       <a href="">link</a>
-      <img :src="product(num).simples.images.src" :alt="product(num).simples.images.alt" :title="product(num).simples.images.title">
+      <img
+        :src="product(num).simpleProducts[product(num).defaultSku].images[0].src"
+        :alt="product(num).simpleProducts[product(num).defaultSku].images.alt"
+        :title="product(num).simpleProducts[product(num).defaultSku].images.title">
     </div>
-    <h2>{{ product(num).simples.title }}</h2>
+    <h2>{{ product(num).simpleProducts.title }}</h2>
     <p>{{ product(num).title }}</p>
     <div class="column" v-for="(attr, index) in product(num).attributes">
       <span>{{ attr.title }} - {{ attr.value }}</span>
     </div>
-    <strong>{{ product(num).simples.price }} {{ $t('buttons.price')}}</strong>
+    <strong>{{ product(num).simpleProducts[product(num).defaultSku].price }} {{ $t('buttons.price')}}</strong>
     <div>
       <input style="text-align: center" min="1" type="number" v-model.number="value">
     </div>
@@ -43,14 +46,12 @@
     methods: {
       sendToCart (num) {
         let product = {
-          title: this.product(num).simples.title,
           count: this.value,
-          sku: this.product(num).simples.sku,
-          price: this.product(num).simples.price,
-          image: this.product(num).simples.images
+//          sku: this.product(num).simpleProducts[this.product(num).defaultSku].sku,
+          superSku: this.product(num).superSku
         }
         this.$store.dispatch('addToCart', product)
-        this.$store.dispatch(PUSH, {name: 'cart', id: num})
+//        this.$store.dispatch(PUSH, {name: 'cart', id: num})
       },
       openQuestion (num) {
         this.$store.dispatch(PUSH, {name: 'question', id: num})

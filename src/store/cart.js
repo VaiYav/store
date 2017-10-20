@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import { PUSH } from 'vuex-modal'
 
 const state = {
   cart: [],
@@ -11,14 +12,10 @@ const getters = {
 }
 
 const actions = {
-  addToCart: function ({commit}, product) {
-    let p = this.state.cart.cart.find(item => item.sku === product.sku)
-    if (p) {
-      commit('ADD_TO_CART', p.count = p.count + product.count)
-    } else {
-      commit('ADD_TO_CART', product)
-    }
-    Vue.localStorage.set('Cart', JSON.stringify(state.cart))
+  addToCart: function ({commit, dispatch}, { superSku, count }) {
+    commit('ADD_TO_CART', { superSku, count })
+    dispatch(PUSH, {name: 'cart', id: superSku})
+    Vue.localStorage.set('Cart', JSON.stringify())
   },
   switchStatus: function ({commit}, value) {
     commit('SWITCH_STATUS', value)
@@ -37,8 +34,9 @@ const actions = {
 }
 
 const mutations = {
-  ADD_TO_CART: function (state, product) {
-    if (typeof (product) === 'object') {
+  ADD_TO_CART: function (state, { superSku, count }) {
+    let product = this.state.products.find(p => p.superSku === superSku)
+    if (product) {
       state.cart.push(product)
     }
   },

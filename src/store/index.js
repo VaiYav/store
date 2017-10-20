@@ -155,6 +155,7 @@ const localizeUa = {
 }
 const getters = {
   getProduct: state => num => state.products[num],
+  getProductBySku: state => superSku => state.products.find(p => p.superSku === superSku),
   getProducts: state => state.products,
   getStatusSend: state => state.statusSend,
   getMethods: state => state.methods

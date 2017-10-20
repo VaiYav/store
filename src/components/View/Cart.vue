@@ -5,8 +5,6 @@
       </strong>
       <div class="cart" v-show="statusMiniCart">
         <div v-for="(item, index) in itemsCart">
-          <img :src="item.image.src" alt="">
-          {{item.title}}
           {{ $t('form.count')}}: {{item.count}} {{ $t('buttons.count')}}
           {{item.price}} {{ $t('buttons.price')}}
         </div>
@@ -36,6 +34,8 @@
     },
     computed: {
       ...mapGetters({
+        product: 'getProduct',
+        products: 'getProducts',
         itemsCart: 'getItemsCart',
         statusMiniCart: 'getStatusMiniCart'
       }),
