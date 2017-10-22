@@ -47,11 +47,9 @@
       sendToCart (num) {
         let product = {
           count: this.value,
-//          sku: this.product(num).simpleProducts[this.product(num).defaultSku].sku,
           superSku: this.product(num).superSku
         }
         this.$store.dispatch('addToCart', product)
-//        this.$store.dispatch(PUSH, {name: 'cart', id: num})
       },
       openQuestion (num) {
         this.$store.dispatch(PUSH, {name: 'question', id: num})

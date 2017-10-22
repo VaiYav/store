@@ -67,7 +67,7 @@
         this.$store.dispatch('changeCustomer', {type: 'customer', value: this.customer})
       }
     },
-    created () {
+    mounted () {
       Api.getProducts()
         .then(products => {
           this.$store.dispatch('addProducts', products.data)

@@ -14,12 +14,12 @@
       "simpleProducts": {
         "sku1": {
           "parentSuperSku": "SuperSKU1",
-          "title": "Сетевой шуруповерт Дніпро-М МДШ-600",
-          "price": "684",
+          "title": "Qwe",
+          "price": "124",
           "sku": "69091000",
           "images": {
             "0": {
-              "title": "Сетевой шуруповерт Дніпро-М",
+              "title": "Qwe",
               "alt": "Сетевой шуруповерт Дніпро-М",
               "src": "https://vaiyav.github.io/sites/motive/img/content/pic1.jpg"
             }
@@ -41,8 +41,8 @@
       "simpleProducts": {
         "sku2": {
           "parentSuperSku": "SuperSKU2",
-          "title": "Сетевой шуруповерт Дніпро-М МДШ-600",
-          "price": "684",
+          "title": "Rty",
+          "price": "384",
           "sku": "69091002",
           "images": {
             "0": {
@@ -69,7 +69,7 @@
         "sku3": {
           "parentSuperSku": "SuperSKU3",
           "title": "Сетевой шуруповерт Дніпро-М МДШ-600",
-          "price": "684",
+          "price": "284",
           "sku": "69091003",
           "images": {
             "0": {
@@ -83,5 +83,55 @@
     }
   ],
   "feedbacks": [],
-  "orders": []
+  "orders": [
+    {
+      "order": {
+        "name": "Qwetr",
+        "email": "",
+        "payment": {
+          "title": "Безналичный",
+          "value": "nonCash"
+        },
+        "confirm": false,
+        "address": "qwe",
+        "delivery": {
+          "title": "Самовывоз",
+          "value": "personally"
+        },
+        "text": "",
+        "statusPayment": "Не оплачено",
+        "items": [
+          {
+            "superSku": "SuperSKU3",
+            "title": "Сетевой шуруповерт ТехАС ТА-01-104 применяется для монтажных работ и сверления в различных материалах.",
+            "attributes": [
+              {
+                "title": "Вес",
+                "value": "1.3 кг"
+              }
+            ],
+            "description": "Такой инструмент в руках настоящего профессионала может выполнить большой объем работы по сверлению, вкручиванию и выкручиванию элементов крепления. Шуруповерты нашли широкое применение, как в быту, так и на производствах. Такой инструмент значительно экономит время по работе с саморезами и шурупами. Кроме функций вкручивания/выкручивания, шуруповертом DT-0310 возможно работать и в качестве дрели для сверления отверстий небольшого диаметра.",
+            "defaultSku": "sku3",
+            "simpleProducts": {
+              "sku3": {
+                "parentSuperSku": "SuperSKU3",
+                "title": "Сетевой шуруповерт Дніпро-М МДШ-600",
+                "price": "284",
+                "sku": "69091003",
+                "images": {
+                  "0": {
+                    "title": "Сетевой шуруповерт Дніпро-М",
+                    "alt": "Сетевой шуруповерт Дніпро-М",
+                    "src": "https://vaiyav.github.io/sites/motive/img/content/pic3.jpg"
+                  }
+                }
+              }
+            },
+            "count": 3
+          }
+        ]
+      },
+      "id": 1
+    }
+  ]
 }

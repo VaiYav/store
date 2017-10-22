@@ -168,17 +168,9 @@ const actions = {
     commit('SEND_STATUS', {status})
   },
   init: function ({commit}) {
-    let lsCart = Vue.localStorage.get('Cart')
     let lsCustomer = Vue.localStorage.get('customer')
     let lsOrder = Vue.localStorage.get('order')
     let lsUser = Vue.localStorage.get('user')
-    if (lsCart !== null) {
-      let arr = JSON.parse(lsCart)
-      let length = arr.length
-      for (let i = 0; i < length; i++) {
-        commit('ADD_TO_CART', arr[i])
-      }
-    }
     if (lsCustomer !== null) {
       let obj = JSON.parse(lsCustomer)
       this.dispatch('changeCustomer', {type: 'customer', value: obj})
@@ -191,6 +183,16 @@ const actions = {
       let obj = JSON.parse(lsUser)
       this.dispatch('changeCustomer', {type: 'user', value: obj})
     }
+  },
+  initCart: function ({commit}) {
+    let lsCart = Vue.localStorage.get('Cart')
+    if (lsCart !== null) {
+      let arr = JSON.parse(lsCart)
+      let length = arr.length
+      for (let i = 0; i < length; i++) {
+        commit('ADD_TO_CART_FROM_LS', {item: arr[i]})
+      }
+    }
   }
 }
 const mutations = {
@@ -199,6 +201,9 @@ const mutations = {
   },
   SEND_STATUS: function (state, {status}) {
     state.statusSend = {status}
+  },
+  ADD_TO_CART_FROM_LS: function (state, {item}) {
+    state.cart.cart.push(item)
   }
 }
 

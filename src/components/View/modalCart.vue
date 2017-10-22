@@ -2,8 +2,7 @@
   <modal name="cart">
     <div class="basic-modal">
       <div v-for="(item, index) in itemsCart">
-        {{itemsCart}}
-        <!--<img :src="product(index).simpleProducts[product(index).defaultSku].images.src" alt="">-->
+        <img :src="item.simpleProducts[item.defaultSku].images[0].src" alt="">
         {{item.title}}
         {{ $t('form.summ')}}
         <strong>
@@ -49,7 +48,7 @@
         let sum = 0
         for (let i = 0; i < arr.length; i++) {
           count = arr[i].count
-          price = arr[i].price
+          price = arr[i].simpleProducts[arr[i].defaultSku].price
           sum += count * price
         }
         return sum

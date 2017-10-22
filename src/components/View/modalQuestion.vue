@@ -1,7 +1,9 @@
 <template>
   <modal name="question">
     <div class="basic-modal">
-      <h1 v-if="modal" class="title">{{ $t('message.questionAbout')}} {{products[modal.id].simpleProducts[products[modal.id].defaultSku].title}}</h1>
+      <h1 v-if="modal && (modal.name === 'question')" class="title">{{ $t('message.questionAbout')}}
+            {{products[modal.id].simpleProducts[products[modal.id].defaultSku].title}}
+      </h1>
       <form @submit.prevent="sendForm(form)">
         <label for="name">
           {{ $t('form.name')}}

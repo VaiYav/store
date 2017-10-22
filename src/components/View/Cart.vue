@@ -35,7 +35,6 @@
     computed: {
       ...mapGetters({
         product: 'getProduct',
-        products: 'getProducts',
         itemsCart: 'getItemsCart',
         statusMiniCart: 'getStatusMiniCart'
       }),
@@ -54,11 +53,14 @@
         let sum = 0
         for (let i = 0; i < arr.length; i++) {
           count = arr[i].count
-          price = arr[i].price
+          price = arr[i].simpleProducts[arr[i].defaultSku].price
           sum += count * price
         }
         return sum
       }
+    },
+    mounted () {
+      this.$store.dispatch('initCart')
     }
 }
 </script>

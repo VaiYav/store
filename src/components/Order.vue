@@ -38,10 +38,12 @@
     <div>
       {{ $t('form.cart')}}
       <div v-for="(item, index) in itemsCart" :key="index">
-        <img :src="item.image.src" :alt="item.image.alt">
+        <img :src="item.simpleProducts[item.defaultSku].images[0].src" :alt="item.simpleProducts[item.defaultSku].images[0].alt">
         {{item.title}}
-        {{item.count}} - {{ $t('form.count')}}
-        {{item.price}} {{ $t('buttons.price')}}
+        <br />
+         {{ $t('form.count')}} - {{item.count}}
+        <br />
+        {{item.simpleProducts[item.defaultSku].price}} {{ $t('buttons.price')}}
       </div>
     </div>
   </div>
@@ -94,7 +96,7 @@
           })
       }
     },
-    mounted () {
+    created () {
       Object.assign(this.form, this.user, this.customers)
     }
   }
